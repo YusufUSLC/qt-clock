@@ -86,7 +86,9 @@ jobs:
       - name: Install Qt
         uses: jurplel/install-qt-action@v4
         with:
-          version: 6.7.*
+          # Qt 6.9 or newer is needed on the current macOS runners: older prebuilt
+          # Qt versions link the AGL framework, which the latest macOS SDK removed.
+          version: 6.9.*
           cache: true
       - name: Configure
         run: cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
