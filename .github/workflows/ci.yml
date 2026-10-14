@@ -21,7 +21,7 @@ jobs:
       matrix:
         qt: [5, 6]
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
       - name: Install dependencies
         run: |
@@ -50,7 +50,7 @@ jobs:
     name: Linux / qmake
     runs-on: ubuntu-24.04
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: Install dependencies
         run: |
           sudo apt-get update
@@ -65,7 +65,7 @@ jobs:
     name: Windows / Qt 6
     runs-on: windows-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: Install Qt
         uses: jurplel/install-qt-action@v4
         with:
@@ -82,7 +82,7 @@ jobs:
     name: macOS / Qt 6
     runs-on: macos-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: Install Qt
         uses: jurplel/install-qt-action@v4
         with:
