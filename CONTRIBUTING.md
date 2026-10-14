@@ -48,7 +48,7 @@ so they always match the code. After changing how the clock looks, run:
 ```bash
 cmake -S . -B build -DQTCLOCK_BUILD_TOOLS=ON
 cmake --build build
-./tools/regenerate_assets.sh build/tools/screenshots
+bash tools/regenerate_assets.sh build/tools/screenshots
 ```
 
 The GIF step needs Python 3 with [Pillow](https://pypi.org/project/pillow/).

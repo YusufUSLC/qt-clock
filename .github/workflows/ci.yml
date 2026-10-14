@@ -1,0 +1,96 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  linux:
+    name: Linux / Qt ${{ matrix.qt }}
+    runs-on: ubuntu-24.04
+    strategy:
+      fail-fast: false
+      matrix:
+        qt: [5, 6]
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ninja-build fonts-dejavu-core
+          if [ "${{ matrix.qt }}" = "5" ]; then
+            sudo apt-get install -y qtbase5-dev
+          else
+            sudo apt-get install -y qt6-base-dev libgl1-mesa-dev
+          fi
+
+      - name: Configure
+        run: >
+          cmake -S . -B build -G Ninja
+          -DCMAKE_BUILD_TYPE=Release
+          -DQT_VERSION_MAJOR_OVERRIDE=${{ matrix.qt }}
+          -DQTCLOCK_WARNINGS_AS_ERRORS=ON
+
+      - name: Build
+        run: cmake --build build
+
+      - name: Test
+        run: ctest --test-dir build --output-on-failure
+
+  qmake:
+    name: Linux / qmake
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y qt6-base-dev libgl1-mesa-dev
+      - name: Build with qmake
+        run: |
+          mkdir build-qmake && cd build-qmake
+          qmake6 ../Clock.pro
+          make -j"$(nproc)"
+
+  windows:
+    name: Windows / Qt 6
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Qt
+        uses: jurplel/install-qt-action@v4
+        with:
+          version: 6.7.*
+          cache: true
+      - name: Configure
+        run: cmake -S . -B build
+      - name: Build
+        run: cmake --build build --config Release
+      - name: Test
+        run: ctest --test-dir build -C Release --output-on-failure
+
+  macos:
+    name: macOS / Qt 6
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Qt
+        uses: jurplel/install-qt-action@v4
+        with:
+          version: 6.7.*
+          cache: true
+      - name: Configure
+        run: cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
+      - name: Build
+        run: cmake --build build
+      - name: Test
+        run: ctest --test-dir build --output-on-failure

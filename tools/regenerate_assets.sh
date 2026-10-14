@@ -3,12 +3,12 @@
 # Copyright (c) 2026 Yusuf Usluca <https://github.com/YusufUSLC>
 # TR: Bu betik README'deki tüm görselleri ve uygulama simgesini yeniden üretir. Önce "cmake -S .
 #     -B build -DQTCLOCK_BUILD_TOOLS=ON && cmake --build build" ile aracı derleyin, sonra
-#     "./tools/regenerate_assets.sh build/tools/screenshots" komutunu çalıştırın. Demo GIF için
+#     "bash tools/regenerate_assets.sh build/tools/screenshots" komutunu çalıştırın. Demo GIF için
 #     Pillow kurulu Python 3 gerekir (pip install pillow). Güvenli mod: -e hata olunca dur, -u
 #     tanımsız değişken hata sayılsın, pipefail boru hattındaki her hata sayılsın.
 # EN: This script makes all pictures of the README and the application icon again. First build the
 #     tool with "cmake -S . -B build -DQTCLOCK_BUILD_TOOLS=ON && cmake --build build", then run
-#     "./tools/regenerate_assets.sh build/tools/screenshots". For the demo GIF you need Python 3
+#     "bash tools/regenerate_assets.sh build/tools/screenshots". For the demo GIF you need Python 3
 #     with Pillow (pip install pillow). Safe mode: -e stops on an error, -u treats an undefined
 #     variable as an error, pipefail counts every error in a pipeline.
 set -euo pipefail

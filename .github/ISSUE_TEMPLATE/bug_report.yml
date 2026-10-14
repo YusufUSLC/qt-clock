@@ -1,0 +1,50 @@
+name: Bug report
+description: Something does not work as expected
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: Thanks for reporting a problem! The more detail you give, the faster it can be fixed.
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: Describe the problem and what you expected to happen instead.
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1. Open the Window menu
+        2. Enable "Frameless widget"
+        3. ...
+    validations:
+      required: true
+  - type: dropdown
+    id: os
+    attributes:
+      label: Operating system
+      options: [Windows, macOS, Linux (X11), Linux (Wayland), Other]
+    validations:
+      required: true
+  - type: input
+    id: qt-version
+    attributes:
+      label: Qt version
+      description: Shown in Help → About Qt.
+      placeholder: "6.7.2"
+    validations:
+      required: true
+  - type: input
+    id: app-version
+    attributes:
+      label: Qt Clock version
+      description: Run `QtClock --version` or look at Help → About Qt Clock.
+      placeholder: "1.0.0"
+  - type: textarea
+    id: screenshots
+    attributes:
+      label: Screenshots or logs
+      description: Drag and drop images here. Paste any console output in a code block.
