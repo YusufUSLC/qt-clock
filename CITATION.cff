@@ -1,0 +1,19 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+title: "Qt Clock"
+abstract: "A themeable analog and digital clock built with Qt Widgets."
+type: software
+authors:
+  - family-names: Usluca
+    given-names: Yusuf
+    alias: YusufUSLC
+version: 1.0.0
+date-released: 2026-10-14
+license: MIT
+url: "https://github.com/YusufUSLC/qt-clock"
+repository-code: "https://github.com/YusufUSLC/qt-clock"
+keywords:
+  - qt
+  - cpp
+  - clock
+  - desktop

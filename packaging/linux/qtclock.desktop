@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Name=Qt Clock
+GenericName=Clock
+Comment=A themeable analog and digital clock
+Exec=QtClock
+Icon=qtclock
+Terminal=false
+Categories=Utility;Clock;Qt;
+StartupWMClass=QtClock
